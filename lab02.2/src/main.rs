@@ -38,13 +38,7 @@ fn reverse(s: &str) -> String {
 
 // True if `s` reads the same backwards. Reuse reverse().
 fn is_palindrome(s: &str) -> bool {
-    let rev_str: String = reverse(s);
-    for i in 0..s.len() {
-        if rev_str.as_bytes()[i] != s.as_bytes()[i] {
-            return false;
-        }
-    }
-    true
+    reverse(s) == s
 }
 
 // A new String made of `s` repeated n times.
