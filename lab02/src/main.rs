@@ -1,5 +1,5 @@
 //1
-fn add_chars_n(s : String, c : char, n : u32) -> String {
+fn add_chars_n(s: String, c: char, n: u32) -> String {
     let mut s = s;
     for _ in 0..n {
         s.push(c);
@@ -21,7 +21,7 @@ fn ex1() {
 }
 
 //2
-fn add_chars_n2(s : &mut String, c : char, n : u32) {
+fn add_chars_n2(s: &mut String, c: char, n: u32) {
     for _ in 0..n {
         s.push(c);
     }
@@ -41,39 +41,39 @@ fn ex2() {
 }
 
 //3
-fn add_space(s : String, n : i32) -> String {
-    let mut s : String = s;
+fn add_space(s: String, n: i32) -> String {
+    let mut s: String = s;
     for _ in 0..n {
         s.push(' ');
     }
     s
 }
 
-fn add_str(s : String, s2: String) -> String {
-    let mut s : String = s;
+fn add_str(s: String, s2: String) -> String {
+    let mut s: String = s;
     for i in s2.chars() {
         s.push(i);
     }
     s
 }
 
-fn add_integer(s : String, i: i32, sep: u8) -> String {
+fn add_integer(s: String, i: i32, sep: u8) -> String {
     if i == 0 {
         return s;
     }
 
-    let mut s : String = s;
-    s = add_integer(s, i/10, sep+1);
+    let mut s: String = s;
+    s = add_integer(s, i / 10, sep + 1);
     s.push(((i % 10) as u8 + b'0') as char);
-    if sep != 0 && sep % 3 == 0 {
+    if sep != 0 && sep.is_multiple_of(3) {
         s.push(',');
     }
     s
 }
 
-fn add_float(s : String, f : f32) -> String {
-    let mut s : String = s;
-    let mut f : f32 = f;
+fn add_float(s: String, f: f32) -> String {
+    let mut s: String = s;
+    let mut f: f32 = f;
 
     //we pull off some funky stuff
     let mut decimal_part = 1;
@@ -82,7 +82,7 @@ fn add_float(s : String, f : f32) -> String {
         f *= 10.0;
     }
 
-    let f : i32 = f as i32;
+    let f: i32 = f as i32;
 
     s = add_integer(s, f / decimal_part, 0);
     s.push('.');
@@ -91,9 +91,8 @@ fn add_float(s : String, f : f32) -> String {
     s
 }
 
-fn ex3()
-{
-    let mut s : String = String::new();
+fn ex3() {
+    let mut s: String = String::new();
     s = add_space(s, 22);
     s = add_str(s, "I 💚".to_string());
     println!("{s}");
@@ -133,7 +132,6 @@ fn ex3()
 }
 
 fn main() {
-
     ex1();
     ex2();
     ex3();

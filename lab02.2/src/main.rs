@@ -6,7 +6,7 @@ struct Note {
 // ---------- Part 1: borrow to read (&str) ----------
 
 // How many times does `c` appear in `s`?
-fn count_char(s: &str, c: char) -> usize { 
+fn count_char(s: &str, c: char) -> usize {
     let mut counter: usize = 0;
     for ch in s.chars() {
         if ch == c {
@@ -18,7 +18,7 @@ fn count_char(s: &str, c: char) -> usize {
 
 // The first word of `s` (up to the first space, or all of `s`), as a slice of `s`.
 // No copying: return a &str that points into `s`. Use as_bytes and a while loop.
-fn first_word(s: &str) -> &str { 
+fn first_word(s: &str) -> &str {
     for (counter, i) in s.char_indices() {
         if i == ' ' {
             return &s[0..counter];
@@ -28,7 +28,7 @@ fn first_word(s: &str) -> &str {
 }
 
 // A new String with the characters of `s` in reverse order.
-fn reverse(s: &str) -> String { 
+fn reverse(s: &str) -> String {
     let mut ret_str: String = String::from("");
     for i in s.chars() {
         ret_str.insert(0, i);
@@ -41,7 +41,7 @@ fn is_palindrome(s: &str) -> bool {
     let rev_str: String = reverse(s);
     for i in 0..s.len() {
         if rev_str.as_bytes()[i] != s.as_bytes()[i] {
-            return false
+            return false;
         }
     }
     true
@@ -72,7 +72,7 @@ fn add_tag(s: &mut String, tag: &str) {
 // Replace every occurrence of `c` with '*' in the caller's string.
 // Build a new String, then assign it back with *s = ...
 fn censor(s: &mut String, c: char) {
-    let mut new_s : String = String::new();
+    let mut new_s: String = String::new();
     for ch in s.chars() {
         if ch == c {
             new_s.push('*');
@@ -93,7 +93,7 @@ fn shout(s: String) -> String {
 // Take two strings and return the longer one (the first on a tie). The other is dropped.
 fn longer_of(a: String, b: String) -> String {
     if a.len() >= b.len() {
-        return a
+        return a;
     }
     b
 }
@@ -102,7 +102,7 @@ fn longer_of(a: String, b: String) -> String {
 
 // Build a Note from two string slices. The Note must own its text.
 fn make_note(title: &str, body: &str) -> Note {
-    let note : Note = Note {
+    let note: Note = Note {
         title: String::from(title),
         body: String::from(body),
     };
@@ -133,7 +133,7 @@ fn append(note: &mut Note, text: &str) {
 
 // Use the note up and return "[ARCHIVED] <title>: <body>".
 fn archive(note: Note) -> String {
-    let mut s : String = String::from("[ARCHIVED] ");
+    let mut s: String = String::from("[ARCHIVED] ");
     for c in note.title.chars() {
         s.push(c);
     }
@@ -147,7 +147,7 @@ fn archive(note: Note) -> String {
 // Combine two notes. The first is consumed and reused, the second is only read.
 // Title becomes "<a>+<b>", body becomes "<a body> <b body>".
 fn merge(a: Note, b: &Note) -> Note {
-    let mut n : Note = a;
+    let mut n: Note = a;
     n.title.push('+');
     for c in b.title.chars() {
         n.title.push(c);
